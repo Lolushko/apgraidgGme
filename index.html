@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="supergame.css">
+    <title>game</title>
+</head>
+<body>
+    
+    <div class="box" id="gamer">
+        <div class="level">
+            <span class="gamername" id="gamername"><strong>Nikname</strong></span>
+            <div><input type="text" class="nick input" id="nickname"placeholder="Введите никнейм">
+            <button class="save input" id="save">Save</button><br>   
+            </div>
+            <h3 class="lev">Выберите уровень сложности</h3>
+            <p class="izil" id="izi">легкий</p>
+            <p id="normal">средний</p>
+            <p id="hard">сложный</p>
+            <p id="superhard">невозможный</p>
+        </div>
+        <div class="record">
+             <table >
+                <tbody class="table">
+                    <h3 class="tab">Таблица рекордов <button class="butn" id="clear"> сброс</button></h3>
+                    <tr id="table">
+                        <td>Имя</td>       
+                        <td>уровень</td>
+                        <td>время</td>
+                        <td>результат</td>
+                    </tr>
+                    <tr id="superhardrec">
+                        <td id="superhardname" ></td>       
+                        <td>невозможный</td>
+                        <td id="superhardtime" ></td>
+                        <td id="superhardresult"></td>
+                    </tr>
+                    <tr id="hardrec">
+                        <td id="hardname"></td>       
+                        <td>сложный</td>
+                        <td id="hardtime"></td>
+                        <td id="hardresult"></td>
+                    </tr>
+                    <tr id="normalrec">
+                        <td id="normalname"></td>       
+                        <td>средний</td>
+                        <td id="normaltime"></td>
+                        <td id="normalresult"></td>
+                    </tr>
+                    <tr id="izirec">
+                        <td id="iziname"></td>       
+                        <td>легкий</td>
+                        <td id="izitime"></td>
+                        <td id="iziresult"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+  <div class="app" id="subgame">
+    <div class="app__header">
+      <h1 id="time-header">Время игры: <span id="time">5.0</span></h1>
+      <h1 id="result-header" class="hide">Ваш результат: <span id="result"></span></h1>
+    </div>
+    <div class="app__content">
+      <button class="btn" id="start">Начать</button>
+      <button class="but" id="but">Настройки</button>
+      <div class="game" id="game"></div>
+    </div>
+    <div class="app__footer">
+      <div class="input">
+        <label for="game-time">Время игры, (сек)</label>
+        <input type="number" id="game-time" min="5" max="25" step="1" value="5">
+      </div>
+    </div>
+  </div>
+  
+
+    <script src="supergame.js"></script>
+</body>
+</html>
