@@ -43,6 +43,11 @@ let score = 0
 let isGameStarted = false
 let gameLevel
 
+
+let translateX = 1
+
+
+
 $gamername.addEventListener('click', returnName)
 
 $izi.addEventListener('click', startIziGame)
@@ -119,6 +124,7 @@ function getGameLevel(key) {
 
 function startGame() {
     score = 0
+    who = 1
     setGameTime()
     $gameTime.setAttribute('disabled', 'true')
     currentTime()
@@ -138,7 +144,7 @@ function startGame() {
         }
     }, 100)
 
-    renderBox()
+    whichRenderBox()
     
 }
 
@@ -200,9 +206,12 @@ function handleBloxClick(event) {
 
     if (event.target.dataset.box) {
         score++
-        renderBox()
+        whichRenderBox()
     }
 }
+
+
+
 
 function renderBox() {
     
@@ -231,14 +240,80 @@ function renderBox() {
 
 }
 
+
+
+function moveDiv() {
+
+    let $hubbe = {}
+
+   if (gameLevel === 4) {
+    $hubbe.renderBox = function() {
+      
+    $game.innerHTML = ''
+  
+    let box = document.createElement('div')
+  
+    boxSize = (getRandom(15, 20 ))
+  
+    let gameSize = $game.getBoundingClientRect()
+  
+    let maxTop = gameSize.height -  boxSize
+    let maxleft = gameSize.width - boxSize
+    
+  
+    box.style.height = box.style.width = boxSize + 'px'
+    box.style.position = 'absolute'
+    box.style.backgroundColor = getRandomColor()
+    box.style.top = getRandom(0, maxTop) + 'px'
+    box.style.left = getRandom(0, maxleft) + 'px'
+    box.style.cursor = 'pointer'
+  
+  
+    box.setAttribute('data-box', 'true')
+    box.setAttribute('id', 'box')
+    $game.insertAdjacentElement('afterbegin', box)
+    
+    
+  
+    $hubbe.move = function() {	
+        if (isGameStarted === true)	{
+     
+      if(parseFloat(box.style.left) <= 2) {
+        translateX = 1;
+      } if(parseFloat(box.style.left) >= (298 - boxSize)) {
+        translateX = -1;
+      } 
+
+      box.style.left = parseFloat(box.style.left) + translateX + 'px';
+
+      setTimeout($hubbe.move, 19)
+    
+     }  
+    }
+        $hubbe.move()
+   }
+    $hubbe.renderBox()
+  } 
+ 
+}
+
+
+function whichRenderBox() {
+    if (gameLevel === 4) {
+        moveDiv()
+    } else {
+        renderBox()
+    }
+}
+
 //проверяет уровень и задает нужные значения в min и max
 function renderBoxGameLexel() {
     if (gameLevel === 1 ) {
-        boxSize = (getRandom(50, 50 ))
+        boxSize = (getRandom(30, 50 ))
     } else if (gameLevel === 2){
-        boxSize = (getRandom(30, 30))
+        boxSize = (getRandom(20, 30))
     } else if (gameLevel === 3) {
-        boxSize = (getRandom(20, 20))
+        boxSize = (getRandom(10, 20))
     } else if (gameLevel === 4) {
         boxSize = (getRandom(10, 10))
 
@@ -292,7 +367,7 @@ function setNameUser() {
 
         localStorage.setItem('nickname', $nickname.value.slice(0,10))
 
-        $saveNickname()
+        saveNickname()
          
     } else {
         localStorage.setItem('nickname', $nickname.value)
@@ -444,3 +519,6 @@ getRecorSuperHard()
         $superHardTime.textContent = '0.0'
   }  
 }
+ 
+
+
